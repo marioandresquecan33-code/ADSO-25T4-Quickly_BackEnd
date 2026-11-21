@@ -50,3 +50,21 @@ def eliminar_usuario(id):
     db.session.delete(usuario)
     db.session.commit()
     return jsonify({"mensaje": "Usuario eliminado con éxito"}), 200
+
+@usuario_bp.route('/api/login', methods=['POST'])
+def login():
+    datos = request.get_json()
+    
+    if not datos or 'email' not in datos or 'password' not in datos:
+        return jsonify({"error": "Debes enviar 'email' y 'password'"}), 400
+
+    usuario = Usuario.query.filter_by(email=datos['email']).first()
+
+    if not usuario or not usuario.check_password(datos['password']):
+        return jsonify({"error": "Correo o contraseña incorrectos"}), 401
+
+    return jsonify({
+        "mensaje": "Inicio de sesión exitoso",
+        "usuario": usuario.to_dict()
+    }), 200
+
