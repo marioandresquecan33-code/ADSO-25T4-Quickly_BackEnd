@@ -11,10 +11,12 @@ def create_app():
 
     db.init_app(app)
 
-    # Importar todos los modelos para crear las tablas en MySQL
+    # Importar los 6 modelos para crear todas las tablas en MySQL
     from src.models.categoria import Categoria
     from src.models.producto import Producto
     from src.models.factura import Factura, DetalleFactura
+    from src.models.cliente import Cliente
+    from src.models.usuario import Usuario
     with app.app_context():
         db.create_all()
 
@@ -22,8 +24,14 @@ def create_app():
     from src.routes.categoria_routes import categoria_bp
     from src.routes.producto_routes import producto_bp
     from src.routes.factura_routes import factura_bp
+    from src.routes.cliente_routes import cliente_bp
+    from src.routes.usuario_routes import usuario_bp
+
     app.register_blueprint(categoria_bp)
     app.register_blueprint(producto_bp)
     app.register_blueprint(factura_bp)
+    app.register_blueprint(cliente_bp)
+    app.register_blueprint(usuario_bp)
 
     return app
+
