@@ -11,16 +11,19 @@ def create_app():
 
     db.init_app(app)
 
-    # Importar modelos para que SQLAlchemy cree ambas tablas en MySQL
+    # Importar todos los modelos para crear las tablas en MySQL
     from src.models.categoria import Categoria
     from src.models.producto import Producto
+    from src.models.factura import Factura, DetalleFactura
     with app.app_context():
         db.create_all()
 
-    # Registrar las rutas de ambos módulos
+    # Registrar las rutas de todos los módulos
     from src.routes.categoria_routes import categoria_bp
     from src.routes.producto_routes import producto_bp
+    from src.routes.factura_routes import factura_bp
     app.register_blueprint(categoria_bp)
     app.register_blueprint(producto_bp)
+    app.register_blueprint(factura_bp)
 
     return app
