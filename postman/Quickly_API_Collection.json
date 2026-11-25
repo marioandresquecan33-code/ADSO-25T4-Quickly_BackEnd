@@ -1,0 +1,267 @@
+{
+  "info": {
+    "name": "Quickly API REST - Coleccion Completa",
+    "description": "Coleccion CRUD para Categorias, Productos, Clientes, Usuarios, Login y Facturas.",
+    "schema": "https://schema.get://postman.com"
+  },
+  "item": [
+    {
+      "name": "1. Categorias",
+      "item": [
+        {
+          "name": "Listar Categorias (GET)",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:5002/api/categorias"
+          }
+        },
+        {
+          "name": "Crear Categoria (POST)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nombre\": \"Electronica\", \"descripcion\": \"Equipos tecnologicos\"}"
+            },
+            "url": "http://localhost:5002/api/categorias"
+          }
+        },
+        {
+          "name": "Actualizar Categoria (PUT)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nombre\": \"Electronica Pro\", \"descripcion\": \"Actualizado\"}"
+            },
+            "url": "http://localhost:5002/api/categorias/1"
+          }
+        },
+        {
+          "name": "Eliminar Categoria (DELETE)",
+          "request": {
+            "method": "DELETE",
+            "url": "http://localhost:5002/api/categorias/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Productos",
+      "item": [
+        {
+          "name": "Listar Productos (GET)",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:5002/api/productos"
+          }
+        },
+        {
+          "name": "Crear Producto (POST)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"barcode\": \"77099887766\", \"nombre_producto\": \"Mouse USB\", \"precio\": 35000, \"stock\": 25, \"id_categoria\": 2}"
+            },
+            "url": "http://localhost:5002/api/productos"
+          }
+        },
+        {
+          "name": "Actualizar Producto (PUT)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"barcode\": \"77099887766\", \"nombre_producto\": \"Mouse Pro\", \"precio\": 42000, \"stock\": 30, \"id_categoria\": 2}"
+            },
+            "url": "http://localhost:5002/api/productos/1"
+          }
+        },
+        {
+          "name": "Eliminar Producto (DELETE)",
+          "request": {
+            "method": "DELETE",
+            "url": "http://localhost:5002/api/productos/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Clientes",
+      "item": [
+        {
+          "name": "Listar Clientes (GET)",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:5002/api/clientes"
+          }
+        },
+        {
+          "name": "Crear Cliente (POST)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"documento\": \"1015489632\", \"nombre\": \"Andres Castro\", \"email\": \"andres@correo.com\", \"telefono\": \"3104567890\", \"direccion\": \"Cra 15 # 80-20\"}"
+            },
+            "url": "http://localhost:5002/api/clientes"
+          }
+        },
+        {
+          "name": "Actualizar Cliente (PUT)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"documento\": \"1015489632\", \"nombre\": \"Andres Castro Ruiz\", \"email\": \"andres@correo.com\", \"telefono\": \"3209876543\", \"direccion\": \"Calle 100\"}"
+            },
+            "url": "http://localhost:5002/api/clientes/1"
+          }
+        },
+        {
+          "name": "Eliminar Cliente (DELETE)",
+          "request": {
+            "method": "DELETE",
+            "url": "http://localhost:5002/api/clientes/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Usuarios y Login",
+      "item": [
+        {
+          "name": "Listar Usuarios (GET)",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:5002/api/usuarios"
+          }
+        },
+        {
+          "name": "Crear Usuario (POST)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"documento\": \"80123456\", \"nombre\": \"Camilo Torres\", \"email\": \"camilo@quickly.com\", \"rol\": \"Vendedor\", \"password\": \"ClaveSegura2026\"}"
+            },
+            "url": "http://localhost:5002/api/usuarios"
+          }
+        },
+        {
+          "name": "Login (POST)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\": \"camilo@quickly.com\", \"password\": \"ClaveSegura2026\"}"
+            },
+            "url": "http://localhost:5002/api/login"
+          }
+        },
+        {
+          "name": "Actualizar Usuario (PUT)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"documento\": \"80123456\", \"nombre\": \"Camilo Admin\", \"email\": \"camilo@quickly.com\", \"rol\": \"Administrador\"}"
+            },
+            "url": "http://localhost:5002/api/usuarios/1"
+          }
+        },
+        {
+          "name": "Eliminar Usuario (DELETE)",
+          "request": {
+            "method": "DELETE",
+            "url": "http://localhost:5002/api/usuarios/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Facturas",
+      "item": [
+        {
+          "name": "Historial de Facturas (GET)",
+          "request": {
+            "method": "GET",
+            "url": "http://localhost:5002/api/facturas"
+          }
+        },
+        {
+          "name": "Emitir Factura y Descontar Stock (POST)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"cliente_nombre\": \"Andres Castro\", \"cliente_documento\": \"1015489632\", \"items\": [{\"id_producto\": 1, \"cantidad\": 2}]}"
+            },
+            "url": "http://localhost:5002/api/facturas"
+          }
+        }
+      ]
+    }
+  ]
+}
