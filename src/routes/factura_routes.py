@@ -1,7 +1,6 @@
 from flask import Blueprint, request, jsonify
-from src.models import db
-from src.models.factura import Factura
-from src.models.detalle_factura import DetalleFactura
+from src import db
+from src.models.factura import Factura, DetalleFactura
 from src.models.producto import Producto
 from src.models.cliente import Cliente
 

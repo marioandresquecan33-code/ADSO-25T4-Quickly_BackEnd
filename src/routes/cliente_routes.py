@@ -1,10 +1,9 @@
 from flask import Blueprint, request, jsonify
-from src.models import db
+from src import db
 from src.models.cliente import Cliente
 
 cliente_bp = Blueprint('cliente_bp', __name__)
 
-# Listar todos los clientes
 @cliente_bp.route('/api/clientes', methods=['GET'])
 def listar_clientes():
     clientes = Cliente.query.all()
@@ -21,7 +20,6 @@ def listar_clientes():
     ]
     return jsonify(resultado), 200
 
-# Crear cliente con validación estricta de cédula y nombre
 @cliente_bp.route('/api/clientes', methods=['POST'])
 def crear_cliente():
     data = request.get_json()
@@ -31,7 +29,6 @@ def crear_cliente():
     documento = str(data['documento']).strip()
     nombre = str(data['nombre']).strip()
 
-    # Verificar si la cédula ya existe en la base de datos
     existente = Cliente.query.filter_by(documento=documento).first()
     if existente:
         if existente.nombre.strip().lower() != nombre.lower():
@@ -42,7 +39,6 @@ def crear_cliente():
             "error": f"El cliente con cédula {documento} ya se encuentra registrado."
         }), 400
 
-    # Verificar email duplicado si lo enviaron
     email = data.get('email', '').strip() if data.get('email') else None
     if email and Cliente.query.filter_by(email=email).first():
         return jsonify({"error": f"El correo {email} ya está registrado con otro cliente."}), 400
@@ -62,7 +58,6 @@ def crear_cliente():
         "id_cliente": nuevo_cliente.id_cliente
     }), 201
 
-# Actualizar cliente
 @cliente_bp.route('/api/clientes/<int:id>', methods=['PUT'])
 def actualizar_cliente(id):
     cliente = Cliente.query.get(id)
@@ -73,7 +68,6 @@ def actualizar_cliente(id):
     nuevo_doc = str(data.get('documento', cliente.documento)).strip()
     nuevo_nombre = str(data.get('nombre', cliente.nombre)).strip()
 
-    # Validar que no choque con la cédula de otro cliente distinto
     otro = Cliente.query.filter(Cliente.documento == nuevo_doc, Cliente.id_cliente != id).first()
     if otro:
         return jsonify({
@@ -89,7 +83,6 @@ def actualizar_cliente(id):
     db.session.commit()
     return jsonify({"mensaje": "Cliente actualizado correctamente"}), 200
 
-# Eliminar cliente
 @cliente_bp.route('/api/clientes/<int:id>', methods=['DELETE'])
 def eliminar_cliente(id):
     cliente = Cliente.query.get(id)
