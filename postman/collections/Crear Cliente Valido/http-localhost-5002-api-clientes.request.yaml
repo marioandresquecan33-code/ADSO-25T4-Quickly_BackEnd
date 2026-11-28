@@ -1,0 +1,23 @@
+$kind: http-request
+name: |
+  http://localhost:5002/api/clientes
+description: ""
+url: |
+  http://localhost:5002/api/clientes
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"documento\": \"1020304050\",\r
+
+    \    \"nombre\": \"Carlos Gómez\",\r
+
+    \    \"email\": \"carlos.gomez@correo.com\",\r
+
+    \    \"telefono\": \"3001234567\",\r
+
+    \    \"direccion\": \"Calle 10 # 20-30, Bogotá\"\r
+
+    }\r\n"
+order: 1000
